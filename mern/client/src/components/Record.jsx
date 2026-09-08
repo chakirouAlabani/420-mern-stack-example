@@ -55,26 +55,24 @@ export default function Record() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-    const person = { ...form };
+    const data = { ...form };
     try {
       let response;
       if (isNew) {
-        // if we are adding a new record we will POST to /record.
         response = await fetch("/record", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(person),
+          body: JSON.stringify(data),
         });
       } else {
-        // if we are updating a record we will PATCH to /record/:id.
         response = await fetch(`/record/${params.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(person),
+          body: JSON.stringify(data),
         });
       }
 
